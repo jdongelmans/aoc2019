@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 class Day02
   def self.run
     Part1.new.run
@@ -24,7 +26,7 @@ class Day02
       input = File.read('./day02.txt').split(',').map(&:to_i)
       input[1], input[2] = 12, 2
 
-      puts "part1 answer: #{Day02.calculate(input)[0]}"
+      puts "Day02::Part1 answer: #{Day02.calculate(input)[0]}"
     end
   end
 
@@ -39,7 +41,7 @@ class Day02
 
           result = Day02.calculate(current_input)[0]
           
-          puts "part2 answer: #{100 * noun + verb}" and return if result == 19690720
+          puts "Day02::Part2 answer: #{100 * noun + verb}" and return if result == 19690720
         end
       end
     end
