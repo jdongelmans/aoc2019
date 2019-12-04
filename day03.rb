@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 class Day03
   def self.run
     Part1.new.run
