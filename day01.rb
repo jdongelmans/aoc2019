@@ -11,7 +11,7 @@ class Day01
       inputs = File.read('./day01.txt').split("\n").map(&:to_i)
       result = inputs.map { |input| (input / 3).floor - 2 }.inject(&:+)
 
-      puts "Day01::Part1 anwser: #{result}"
+      puts "Day01::Part1 answer: #{result}"
     end
   end
   
@@ -20,7 +20,7 @@ class Day01
       inputs = File.read('./day01.txt').split("\n").map(&:to_i)
       result = inputs.map { |input| calculate(input) }.inject(&:+)
 
-      puts "Day01::Part2 anwser: #{result}"
+      puts "Day01::Part2 answer: #{result}"
     end
     
     def calculate(input, total = 0)
