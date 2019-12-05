@@ -6,19 +6,17 @@ class Day02
     Part2.new.run
   end
 
-  def self.calculate(input, current_position = -1)
-    group = input[(current_position += 1)..current_position += 3]
-
-    case group[0]
-    when 1
-      input[group[3]] = input[group[1]] + input[group[2]]
-    when 2
-      input[group[3]] = input[group[1]] * input[group[2]]
-    when 99
-      return input
+  def self.calculate(input)
+    input.each_slice(4) do |group|
+      case group[0]
+      when 1
+        input[group[3]] = input[group[1]] + input[group[2]]
+      when 2
+        input[group[3]] = input[group[1]] * input[group[2]]
+      when 99
+        return input
+      end
     end
-
-    calculate(input, current_position)
   end
 
   class Part1
