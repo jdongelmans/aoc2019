@@ -6,7 +6,7 @@ class Day07
     #Part2.new.run
   end
 
-  def self.calculate(input, current_position: 0, input_overrides: [], output: 0)
+  def self.calculate(input, current_position: 0, opcode_3_overrides: [], output: 0)
     instruction = input[current_position].to_s.rjust(5, '0')
     opcode      = instruction[3..-1].to_i
 
@@ -37,11 +37,11 @@ class Day07
     when 2
       input[group[3]] = value_1 * value_2
     when 3
-      if input_overrides.empty?
+      if opcode_3_overrides.empty?
         puts "Input: "
         input[group[1]] = gets.chomp.to_i
       else
-        input[group[1]] = input_overrides.shift
+        input[group[1]] = opcode_3_overrides.shift
       end
     when 4
       puts "Output for opcode 4: #{value_1}"
@@ -59,7 +59,7 @@ class Day07
     end
 
     current_position += 1 unless [5, 6].include?(opcode)
-    calculate(input, current_position: current_position, input_overrides: input_overrides, output: output)
+    calculate(input, current_position: current_position, opcode_3_overrides: opcode_3_overrides, output: output)
   end
 
   class Part1
@@ -79,8 +79,9 @@ class Day07
                 (0..4).map do |m|
                   next if [i, j, k, l].include?(m)
                   order = [i, j, k, l, m]
+                  previous_output ||= 0
 
-                  order.map.with_object([0]) { |n, results| results << Day07.calculate(input.dup, input_overrides: [n, results].flatten) }.join.to_i
+                  order.map { |n| previous_output = Day07.calculate(input.dup, opcode_3_overrides: [n, previous_output]) }
                 end
               end
             end
